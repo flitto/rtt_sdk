@@ -1,0 +1,15 @@
+{
+  "originHash" : "907cb0fa94c9e271831416a1057572a75eb43887bb90e9fad2b4cb909c9a04ca",
+  "pins" : [
+    {
+      "identity" : "rtt_sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/flitto/rtt_sdk",
+      "state" : {
+        "revision" : "544cc0f7963d2416609a14c23d74777ac7911899",
+        "version" : "0.0.5"
+      }
+    }
+  ],
+  "version" : 3
+}
