@@ -4,7 +4,6 @@ import PackageDescription
 
 let package = Package(
   name: "rtt-sdk",
-  platforms: [.iOS(.v17), .visionOS(.v1)],
   products: [
     .library(
       name: "rtt-sdk",
