@@ -338,7 +338,7 @@
 			repositoryURL = "https://github.com/flitto/rtt_sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.8;
+				minimumVersion = 0.1.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

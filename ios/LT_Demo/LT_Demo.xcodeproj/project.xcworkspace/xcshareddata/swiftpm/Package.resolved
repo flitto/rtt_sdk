@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/flitto/rtt_sdk",
       "state" : {
-        "revision" : "c8c2905f0d852c3c71757e90a72ad25bc0cc9b64",
-        "version" : "0.0.9"
+        "revision" : "b3d4b1196410194b42f84daf9f654df638d4f404",
+        "version" : "0.1.1"
       }
     }
   ],
