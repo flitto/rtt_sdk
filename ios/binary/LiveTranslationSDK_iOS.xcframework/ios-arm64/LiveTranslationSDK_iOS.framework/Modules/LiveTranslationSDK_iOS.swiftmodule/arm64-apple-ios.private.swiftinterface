@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios17.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name LiveTranslationSDK_iOS
+// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-module-flags: -target arm64-apple-ios17.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name LiveTranslationSDK_iOS
+// swift-module-flags-ignorable:  -interface-compiler-version 6.1
 import AVFoundation
 import Combine
 import Foundation
@@ -10,7 +11,133 @@ import Swift
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-public enum ChatRoomEntity {
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum EditChatRoomTitle {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.EditChatRoomTitle {
+  public struct Request : Swift.Codable {
+    public let chatRoomTitle: Swift.String
+    public let interactionKey: Swift.String
+    public init(chatRoomTitle: Swift.String, interactionKey: Swift.String)
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity {
+  public enum Connection : Swift.Equatable {
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Connection, b: LiveTranslationSDK_iOS.RealTimeEntity.Connection) -> Swift.Bool
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.Connection {
+  public struct ChatRequest : Swift.Equatable, Swift.Codable {
+    public let interactionKey: Swift.String
+    public init(interactionKey: Swift.String)
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest, b: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum EditSrcLang {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.EditSrcLang {
+  public struct Request : Swift.Codable {
+    public let srcLangCode: Swift.String
+    public let interactionKey: Swift.String
+    public init(srcLangCode: Swift.String, interactionKey: Swift.String)
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity {
+  public struct MetaData : Swift.Codable, Swift.Equatable, Swift.Hashable, Swift.Sendable {
+    public let code: Swift.Int
+    public let message: Swift.String
+    public let chatRoomID: Swift.String?
+    public let isContinue: Swift.Bool?
+    public let isCommit: Swift.Bool?
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.MetaData, b: LiveTranslationSDK_iOS.RealTimeEntity.MetaData) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public struct GroupByLangCode : Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+    public let langCode: Swift.String
+    public let itemList: [LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item]
+    public var id: Swift.String {
+      get
+    }
+    public init(langCode: Swift.String, itemList: [LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item])
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.GroupByLangCode, b: LiveTranslationSDK_iOS.ChatRoomEntity.GroupByLangCode) -> Swift.Bool
+    public typealias ID = Swift.String
+  }
+}
+public enum RealTimeEntity {
+}
+public enum UserEntity {
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum Join {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.Join {
+  public struct Request : Swift.Codable, Swift.Equatable {
+    public let interactionKey: Swift.String
+    public let password: Swift.String?
+    public init(interactionKey: Swift.String, password: Swift.String? = .none)
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+public enum TranslationEntity {
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity {
+  public enum RecordStream : Swift.Equatable {
+    case connect
+    case disconnect
+    case peerClosed
+    case response(LiveTranslationSDK_iOS.RealTimeEntity.STT.Response)
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, b: LiveTranslationSDK_iOS.RealTimeEntity.RecordStream) -> Swift.Bool
+  }
+  public enum ChatStream : Swift.Equatable {
+    case connect
+    case disconnect
+    case peerClosed
+    case responseChat(LiveTranslationSDK_iOS.RealTimeEntity.Chat.Response)
+    case responseTTS(LiveTranslationSDK_iOS.TTSEntity.TTS.Response)
+    case responseQuestion(LiveTranslationSDK_iOS.RealTimeEntity.Question.Response)
+    case responseBatchTranslation(LiveTranslationSDK_iOS.RealTimeEntity.Translation.Response)
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.ChatStream, b: LiveTranslationSDK_iOS.RealTimeEntity.ChatStream) -> Swift.Bool
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity {
+  public enum RecordStreamAction : Swift.Equatable, Swift.Sendable {
+    case connect
+    case draftData(LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction.DraftData?)
+    public struct DraftData : Swift.Equatable, Swift.Sendable {
+      public let preText: Swift.String
+      public let bufferList: [Swift.Int16]
+      public let rms: Swift.Float
+      public init(preText: Swift.String, bufferList: [Swift.Int16], rms: Swift.Float)
+      public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction.DraftData, b: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction.DraftData) -> Swift.Bool
+    }
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction, b: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction) -> Swift.Bool
+  }
+}
+public enum LanguageCodeFunctor {
+  public static var deviceCode: Swift.String {
+    get
+  }
+  public static func savedDeviceCode(langCode: Swift.String?)
+  public static func getOSDefaultLangCode() -> Swift.String
 }
 extension LiveTranslationSDK_iOS.ChatRoomEntity {
   public struct CompositeItem : Swift.Equatable, Swift.Codable, Swift.Sendable {
@@ -22,18 +149,14 @@ extension LiveTranslationSDK_iOS.ChatRoomEntity {
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum Delete {
-  }
+public enum LanguageFunctor {
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity.Delete {
-  public struct Request : Swift.Codable, Swift.Equatable {
-    public let interactionKey: Swift.String
-    public init(interactionKey: Swift.String)
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Delete.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Delete.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
+extension LiveTranslationSDK_iOS.LanguageFunctor {
+  public static func isRTL(string: Swift.String) -> Swift.Bool
+  public static func isRTL(string: Swift.String) async -> Swift.Bool
+  public static func isRTLSupport(langCode: Swift.String) -> Swift.Bool
+  public static func isRTLSupport(langCode: Swift.String) async -> Swift.Bool
+  public static func getLanguageCode(string: Swift.String) -> Swift.String?
 }
 extension LiveTranslationSDK_iOS.ChatRoomEntity {
   public enum DeleteAllContents {
@@ -72,223 +195,191 @@ extension LiveTranslationSDK_iOS.ChatRoomEntity.DeleteAllContents.Response {
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum Edit {
+extension LiveTranslationSDK_iOS.UserEntity {
+  public enum ChatRoom {
   }
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity.Edit {
-  public struct Request : Swift.Equatable, Swift.Codable {
+extension LiveTranslationSDK_iOS.UserEntity.ChatRoom {
+  public struct Request : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let afterTimestamp: Swift.Int?
+    public init(afterTimestamp: Swift.Int? = .none)
+    public static func == (a: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Request, b: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public enum Response {
+    public struct Item : Swift.Codable, Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+      public let srcLangCode: Swift.String
+      public let interactionKey: Swift.String
+      public let chatRoomTitle: Swift.String
+      public let createdTimestamp: Swift.Int
+      public let chatRoomID: Swift.String
+      public let username: Swift.String
+      public let webChatRoomURL: Swift.String
+      public let langCodeList: [Swift.String]?
+      public var id: Swift.String {
+        get
+      }
+      public var useQnA: Swift.Bool {
+        get
+      }
+      public var usePassword: Swift.Bool {
+        get
+      }
+      public static func == (a: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Response.Item, b: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Response.Item) -> Swift.Bool
+      public typealias ID = Swift.String
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+  }
+}
+public class TTSLanguageCheckFunctor {
+  public init()
+  @objc deinit
+}
+extension LiveTranslationSDK_iOS.TTSLanguageCheckFunctor {
+  public func isSupportLanguageBySTT(langCode: Swift.String) async -> Swift.Bool
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity {
+  public enum Chat : Swift.Equatable {
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat) -> Swift.Bool
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.Chat {
+  public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public let taskType: Swift.String
+    public let data: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData
+    public init(taskType: Swift.String, data: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData)
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request {
+  public struct ContentData : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public init(chatRoomID: Swift.String, chatID: Swift.String, interactionKey: Swift.String, username: Swift.String, srcLangCode: Swift.String, timestamp: Swift.Int, text: Swift.String, duration: Swift.Double, textForTR: Swift.String?)
+    public let chatRoomID: Swift.String
+    public let chatID: Swift.String
+    public let interactionKey: Swift.String
+    public let username: Swift.String
+    public let srcLangCode: Swift.String
+    public let timestamp: Swift.Int
+    public let text: Swift.String
+    public let duration: Swift.Double
+    public let textForTR: Swift.String?
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.Chat {
+  public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let metaData: LiveTranslationSDK_iOS.RealTimeEntity.MetaData
+    public let contentData: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Response, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.TTSEntity {
+  public enum TTS {
+  }
+}
+extension LiveTranslationSDK_iOS.TTSEntity.TTS {
+  public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public init(data: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData)
+    public struct RequestData : Swift.Equatable, Swift.Codable, Swift.Sendable {
+      public init(chatRoomID: Swift.String, chatID: Swift.String, timestamp: Swift.Int, text: Swift.String, langCode: Swift.String)
+      public let chatRoomID: Swift.String
+      public let chatID: Swift.String
+      public let timestamp: Swift.Int
+      public let text: Swift.String
+      public let langCode: Swift.String
+      public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData, b: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData) -> Swift.Bool
+      public func encode(to encoder: any Swift.Encoder) throws
+      public init(from decoder: any Swift.Decoder) throws
+    }
+    public let taskType: Swift.String
+    public let data: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData
+    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.Request, b: LiveTranslationSDK_iOS.TTSEntity.TTS.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.TTSEntity.TTS {
+  public struct Response : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public let metaData: LiveTranslationSDK_iOS.RealTimeEntity.MetaData
+    public let ttsData: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSData
+    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.Response, b: LiveTranslationSDK_iOS.TTSEntity.TTS.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.TTSEntity.TTS {
+  public struct TTSData : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public let listType: Swift.String
+    public let chatList: [LiveTranslationSDK_iOS.TTSEntity.TTS.TTSItem]
+    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSData, b: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSData) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct TTSItem : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public let ttsURL: Swift.String
+    public let langCode: Swift.String
     public let chatRoomID: Swift.String
     public let chatID: Swift.String
     public let text: Swift.String
     public let timestamp: Swift.Int
-    public init(chatRoomID: Swift.String, chatID: Swift.String, text: Swift.String, timestamp: Swift.Int)
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Edit.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Edit.Request) -> Swift.Bool
+    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSItem, b: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSItem) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum EditLangCodeList {
+extension LiveTranslationSDK_iOS.RealTimeEntity {
+  public enum Translation : Swift.Equatable {
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation) -> Swift.Bool
   }
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity.EditLangCodeList {
-  public struct Request : Swift.Codable {
-    public let langCodeList: [Swift.String]
-    public let interactionKey: Swift.String
-    public init(langCodeList: [Swift.String], interactionKey: Swift.String)
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum EditRoomPassword {
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.EditRoomPassword {
+extension LiveTranslationSDK_iOS.RealTimeEntity.Translation {
   public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let interactionKey: Swift.String
-    public let usePassword: Swift.String
-    public let password: Swift.String?
-    public init(interactionKey: Swift.String, usePassword: Swift.Bool, password: Swift.String?)
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.EditRoomPassword.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.EditRoomPassword.Request) -> Swift.Bool
+    public let taskType: Swift.String
+    public let data: [LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData]
+    public init(data: [LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData])
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum EditChatRoomTitle {
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.EditChatRoomTitle {
-  public struct Request : Swift.Codable {
-    public let chatRoomTitle: Swift.String
-    public let interactionKey: Swift.String
-    public init(chatRoomTitle: Swift.String, interactionKey: Swift.String)
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum EditSrcLang {
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.EditSrcLang {
-  public struct Request : Swift.Codable {
-    public let srcLangCode: Swift.String
-    public let interactionKey: Swift.String
-    public init(srcLangCode: Swift.String, interactionKey: Swift.String)
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public struct GroupByLangCode : Swift.Equatable, Swift.Identifiable, Swift.Sendable {
-    public let langCode: Swift.String
-    public let itemList: [LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item]
-    public var id: Swift.String {
-      get
-    }
-    public init(langCode: Swift.String, itemList: [LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item])
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.GroupByLangCode, b: LiveTranslationSDK_iOS.ChatRoomEntity.GroupByLangCode) -> Swift.Bool
-    public typealias ID = Swift.String
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum Join {
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.Join {
-  public struct Request : Swift.Codable, Swift.Equatable {
-    public let interactionKey: Swift.String
-    public let password: Swift.String?
-    public init(interactionKey: Swift.String, password: Swift.String? = .none)
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum List {
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.List {
-  public struct Request : Swift.Codable, Swift.Equatable, Swift.Sendable {
+extension LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request {
+  public struct ContentData : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public init(chatRoomID: Swift.String, chatID: Swift.String, srcLangCode: Swift.String, dstLangCode: Swift.String, timestamp: Swift.Int, text: Swift.String)
     public let chatRoomID: Swift.String
-    public let interactionKey: Swift.String
-    public let updated: Swift.Int?
-    public init(chatRoomID: Swift.String, interactionKey: Swift.String, updated: Swift.Int?)
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.List.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.List.Request) -> Swift.Bool
+    public let chatID: Swift.String
+    public let srcLangCode: Swift.String
+    public let dstLangCode: Swift.String
+    public let timestamp: Swift.Int
+    public let text: Swift.String
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.Translation {
   public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public let chatList: [LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item]
-    public let updated: Swift.Int?
+    public let metaData: LiveTranslationSDK_iOS.RealTimeEntity.MetaData
+    public let contentData: LiveTranslationSDK_iOS.RealTimeEntity.Translation.ContentData
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Response, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct ContentData : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let chatList: [LiveTranslationSDK_iOS.TranslationEntity.TR.Response]
     public var listType: LiveTranslationSDK_iOS.RealTimeEntity.ListType? {
       get
     }
-    public var lastUpdated: Swift.Int? {
-      get
-    }
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response, b: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response) -> Swift.Bool
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.ContentData) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.List.Response {
-  public struct Item : Swift.Codable, Swift.Equatable, Swift.Identifiable, Swift.Sendable {
-    public let interactionKey: Swift.String
-    public let timestamp: Swift.Int
-    public let text: Swift.String
-    public let chatID: Swift.String
-    public let srcLangCode: Swift.String
-    public let chatRoomID: Swift.String
-    public let username: Swift.String
-    public let duration: Swift.Double
-    public let textForTR: Swift.String
-    public var id: Swift.String {
-      get
-    }
-    public var isEditing: Swift.Bool {
-      get
-    }
-    public var isEdit: Swift.Bool {
-      get
-    }
-    public var isWrong: Swift.Bool {
-      get
-    }
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item, b: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item) -> Swift.Bool
-    public typealias ID = Swift.String
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity {
-  public enum Make {
-  }
-}
-extension LiveTranslationSDK_iOS.ChatRoomEntity.Make {
-  public struct Request : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public init(chatRoomTitle: Swift.String, srcLangCode: Swift.String, langCodeList: [Swift.String]? = .none, password: Swift.String?, useQnA: Swift.Bool)
-    public let chatRoomTitle: Swift.String
-    public let srcLangCode: Swift.String
-    public let langCodeList: [Swift.String]?
-    public let password: Swift.String?
-    public let useQnA: Swift.String
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public init(chatRoomID: Swift.String, interactionKey: Swift.String, chatRoomTitle: Swift.String, srcLangCode: Swift.String, hostUserName: Swift.String, webChatRoomURL: Swift.String, langCodeList: [Swift.String]?, useQnA: Swift.Bool, usePassword: Swift.Bool, password: Swift.String?)
-    public let chatRoomID: Swift.String
-    public let interactionKey: Swift.String
-    public let chatRoomTitle: Swift.String
-    public let srcLangCode: Swift.String
-    public let hostUserName: Swift.String
-    public let webChatRoomURL: Swift.String
-    public let langCodeList: [Swift.String]?
-    public let password: Swift.String?
-    public var useQnA: Swift.Bool {
-      get
-    }
-    public var usePassword: Swift.Bool {
-      get
-    }
-    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response, b: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-public struct ConfigurationDomain : Swift.Equatable, Swift.Codable, Swift.Sendable {
-  public let baseURL: Swift.String
-  public let webSocketURL: Swift.String
-  public let audioInfo: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo
-  public init(baseURL: Swift.String, webSocketURL: Swift.String, audioInfo: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo = .init())
-  public static func == (a: LiveTranslationSDK_iOS.ConfigurationDomain, b: LiveTranslationSDK_iOS.ConfigurationDomain) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-extension LiveTranslationSDK_iOS.ConfigurationDomain {
-  public struct AudioInfo : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public var sampleRate: Swift.Double {
-      get
-    }
-    public let bufferSize: Swift.UInt32
-    public init(bufferSize: Swift.UInt32 = 1_024)
-    public static func == (a: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo, b: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.ConfigurationDomain {
-  public static var development: LiveTranslationSDK_iOS.ConfigurationDomain {
-    get
-  }
-  public static var production: LiveTranslationSDK_iOS.ConfigurationDomain {
-    get
   }
 }
 public enum CompositeErrorRepository : Swift.Error, Swift.Sendable {
@@ -371,6 +462,80 @@ public struct OpenApiErrorRepository : Swift.Equatable, Swift.Codable, Swift.Sen
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum EditLangCodeList {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.EditLangCodeList {
+  public struct Request : Swift.Codable {
+    public let langCodeList: [Swift.String]
+    public let interactionKey: Swift.String
+    public init(langCodeList: [Swift.String], interactionKey: Swift.String)
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+public enum LanguageEntity {
+}
+public enum ChatRoomEntity {
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum List {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.List {
+  public struct Request : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let chatRoomID: Swift.String
+    public let interactionKey: Swift.String
+    public let updated: Swift.Int?
+    public init(chatRoomID: Swift.String, interactionKey: Swift.String, updated: Swift.Int?)
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.List.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.List.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let chatList: [LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item]
+    public let updated: Swift.Int?
+    public var listType: LiveTranslationSDK_iOS.RealTimeEntity.ListType? {
+      get
+    }
+    public var lastUpdated: Swift.Int? {
+      get
+    }
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response, b: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.List.Response {
+  public struct Item : Swift.Codable, Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+    public let interactionKey: Swift.String
+    public let timestamp: Swift.Int
+    public let text: Swift.String
+    public let chatID: Swift.String
+    public let srcLangCode: Swift.String
+    public let chatRoomID: Swift.String
+    public let username: Swift.String
+    public let duration: Swift.Double
+    public let textForTR: Swift.String
+    public var id: Swift.String {
+      get
+    }
+    public var isEditing: Swift.Bool {
+      get
+    }
+    public var isEdit: Swift.Bool {
+      get
+    }
+    public var isWrong: Swift.Bool {
+      get
+    }
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item, b: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item) -> Swift.Bool
+    public typealias ID = Swift.String
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
 public struct RemoteErrorRepository : Swift.Equatable, Swift.Codable, Swift.Sendable {
   public init(code: Swift.Int?, message: Swift.String?)
   public let code: Swift.Int?
@@ -378,8 +543,6 @@ public struct RemoteErrorRepository : Swift.Equatable, Swift.Codable, Swift.Send
   public static func == (a: LiveTranslationSDK_iOS.RemoteErrorRepository, b: LiveTranslationSDK_iOS.RemoteErrorRepository) -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
-}
-public enum LanguageEntity {
 }
 extension LiveTranslationSDK_iOS.LanguageEntity.Request {
   public struct LangSet : Swift.Codable, Swift.Equatable, Swift.Sendable {
@@ -615,59 +778,79 @@ extension LiveTranslationSDK_iOS.LanguageEntity.Response {
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-public enum RealTimeEntity {
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public enum Chat : Swift.Equatable {
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat) -> Swift.Bool
+extension LiveTranslationSDK_iOS.TranslationEntity {
+  public struct CompositeChatItem : Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+    public init(item: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item, trItem: LiveTranslationSDK_iOS.TranslationEntity.TR.Response?, ttsData: Foundation.Data?, dstLangCode: Swift.String)
+    public let item: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item
+    public let trItem: LiveTranslationSDK_iOS.TranslationEntity.TR.Response?
+    public let ttsData: Foundation.Data?
+    public let dstLangCode: Swift.String
+    public var id: Swift.String {
+      get
+    }
+    public func mutate(trItem: LiveTranslationSDK_iOS.TranslationEntity.TR.Response?) -> LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem
+    public func mutate(ttsData: Foundation.Data?) -> LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem
+    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem, b: LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem) -> Swift.Bool
+    public typealias ID = Swift.String
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity.Chat {
-  public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let taskType: Swift.String
-    public let data: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData
-    public init(taskType: Swift.String, data: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData)
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
+extension LiveTranslationSDK_iOS.TranslationEntity {
+  public enum TR : Swift.Equatable {
+    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.TR, b: LiveTranslationSDK_iOS.TranslationEntity.TR) -> Swift.Bool
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request {
-  public struct ContentData : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public init(chatRoomID: Swift.String, chatID: Swift.String, interactionKey: Swift.String, username: Swift.String, srcLangCode: Swift.String, timestamp: Swift.Int, text: Swift.String, duration: Swift.Double, textForTR: Swift.String?)
+extension LiveTranslationSDK_iOS.TranslationEntity.TR {
+  public struct Request : Swift.Equatable, Swift.Codable {
+    public init(chatRoomID: Swift.String, chatID: Swift.String, timestamp: Swift.Int, text: Swift.String, srcLangCode: Swift.String, dstLangCode: Swift.String)
     public let chatRoomID: Swift.String
     public let chatID: Swift.String
-    public let interactionKey: Swift.String
-    public let username: Swift.String
-    public let srcLangCode: Swift.String
     public let timestamp: Swift.Int
     public let text: Swift.String
-    public let duration: Swift.Double
-    public let textForTR: Swift.String?
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request.ContentData) -> Swift.Bool
+    public let srcLangCode: Swift.String
+    public let dstLangCode: Swift.String
+    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.TR.Request, b: LiveTranslationSDK_iOS.TranslationEntity.TR.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Response : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public init(srcLangCode: Swift.String, dstLangCode: Swift.String, content: Swift.String, text: Swift.String, chatRoomID: Swift.String, chatID: Swift.String, timestamp: Swift.Int)
+    public let srcLangCode: Swift.String
+    public let dstLangCode: Swift.String
+    public let content: Swift.String
+    public let text: Swift.String
+    public let chatRoomID: Swift.String
+    public let chatID: Swift.String
+    public let timestamp: Swift.Int
+    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.TR.Response, b: LiveTranslationSDK_iOS.TranslationEntity.TR.Response) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity.Chat {
-  public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public let metaData: LiveTranslationSDK_iOS.RealTimeEntity.MetaData
-    public let contentData: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Response, b: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
+public enum CompositeError : Swift.Error {
+  case offline
+  case other(any Swift.Error)
+}
+extension LiveTranslationSDK_iOS.CompositeError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public enum Connection : Swift.Equatable {
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Connection, b: LiveTranslationSDK_iOS.RealTimeEntity.Connection) -> Swift.Bool
+public struct RealTimeRepository {
+}
+extension LiveTranslationSDK_iOS.RealTimeRepository {
+  public func recordConnection() -> _Concurrency.AsyncThrowingStream<LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, any Swift.Error>
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum EditRoomPassword {
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity.Connection {
-  public struct ChatRequest : Swift.Equatable, Swift.Codable {
+extension LiveTranslationSDK_iOS.ChatRoomEntity.EditRoomPassword {
+  public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
     public let interactionKey: Swift.String
-    public init(interactionKey: Swift.String)
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest, b: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest) -> Swift.Bool
+    public let usePassword: Swift.String
+    public let password: Swift.String?
+    public init(interactionKey: Swift.String, usePassword: Swift.Bool, password: Swift.String?)
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.EditRoomPassword.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.EditRoomPassword.Request) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
@@ -688,6 +871,37 @@ extension LiveTranslationSDK_iOS.RealTimeEntity {
       get
     }
   }
+}
+public struct ConfigurationDomain : Swift.Equatable, Swift.Codable, Swift.Sendable {
+  public let baseURL: Swift.String
+  public let webSocketURL: Swift.String
+  public let audioInfo: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo
+  public init(baseURL: Swift.String, webSocketURL: Swift.String, audioInfo: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo = .init())
+  public static func == (a: LiveTranslationSDK_iOS.ConfigurationDomain, b: LiveTranslationSDK_iOS.ConfigurationDomain) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension LiveTranslationSDK_iOS.ConfigurationDomain {
+  public struct AudioInfo : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public var sampleRate: Swift.Double {
+      get
+    }
+    public let bufferSize: Swift.UInt32
+    public init(bufferSize: Swift.UInt32 = 1_024)
+    public static func == (a: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo, b: LiveTranslationSDK_iOS.ConfigurationDomain.AudioInfo) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.ConfigurationDomain {
+  public static var development: LiveTranslationSDK_iOS.ConfigurationDomain {
+    get
+  }
+  public static var production: LiveTranslationSDK_iOS.ConfigurationDomain {
+    get
+  }
+}
+public enum TTSEntity {
 }
 extension LiveTranslationSDK_iOS.RealTimeEntity {
   public enum Message {
@@ -710,18 +924,178 @@ extension LiveTranslationSDK_iOS.RealTimeEntity.Message {
   }
 }
 extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public struct MetaData : Swift.Codable, Swift.Equatable, Swift.Hashable, Swift.Sendable {
-    public let code: Swift.Int
-    public let message: Swift.String
-    public let chatRoomID: Swift.String?
-    public let isContinue: Swift.Bool?
-    public let isCommit: Swift.Bool?
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.MetaData, b: LiveTranslationSDK_iOS.RealTimeEntity.MetaData) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
+  public enum STT : Swift.Equatable {
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT, b: LiveTranslationSDK_iOS.RealTimeEntity.STT) -> Swift.Bool
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.STT {
+  public struct ConnectionRequest : Swift.Equatable, Swift.Codable {
+    public init(command: Swift.String, flittoAPIKey: Swift.String, framesFormat: Swift.String, language: Swift.String, sampleRate: Swift.Int, encoding: Swift.String, bitDepth: Swift.Int, includeSmallerModel: Swift.String = "Y", timeSlice: Swift.Int = 100, useRealtimeV2: Swift.String = "Y")
+    public let command: Swift.String
+    public let flittoAPIKey: Swift.String
+    public let framesFormat: Swift.String
+    public let language: Swift.String
+    public let sampleRate: Swift.Int
+    public let encoding: Swift.String
+    public let bitDepth: Swift.Int
+    public let includeSmallerModel: Swift.String
+    public let timeSlice: Swift.Int
+    public let useRealtimeV2: Swift.String
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
-    public var hashValue: Swift.Int {
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct STTRequest : Swift.Equatable, Swift.Codable {
+    public init(command: Swift.String, transcriptID: Swift.String, buffer: [Swift.Int16]?, timestamp: Swift.Double? = Date.now.timeIntervalSince1970 * 1000, language: Swift.String?)
+    public let command: Swift.String
+    public let transcriptID: Swift.String
+    public let buffer: [Swift.Int16]?
+    public let timestamp: Swift.Double?
+    public let language: Swift.String?
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.STTRequest, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.STTRequest) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.RealTimeEntity.STT {
+  public struct Response : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public let command: Swift.String?
+    public let connectionID: Swift.String?
+    public let data: LiveTranslationSDK_iOS.RealTimeEntity.STT.ContentData?
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.Response, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct ContentData : Swift.Equatable, Swift.Codable, Swift.Sendable {
+    public let transcriptID: Swift.String
+    public let text: Swift.String?
+    public let duration: Swift.Double?
+    public let language: Swift.String?
+    public let smallerModelText: Swift.String?
+    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.ContentData) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+public enum SocketDomain {
+}
+extension LiveTranslationSDK_iOS.SocketDomain {
+  public enum WebSocketMessage : Swift.Equatable {
+    case string(Swift.String)
+    case data(Foundation.Data)
+    public static func == (a: LiveTranslationSDK_iOS.SocketDomain.WebSocketMessage, b: LiveTranslationSDK_iOS.SocketDomain.WebSocketMessage) -> Swift.Bool
+  }
+  public enum WebSocketAction : Swift.Equatable {
+    case connect
+    case message(LiveTranslationSDK_iOS.SocketDomain.WebSocketMessage)
+    case error(LiveTranslationSDK_iOS.CompositeErrorRepository)
+    case cancel
+    case disconnect(Swift.String, Swift.UInt16)
+    case peerClosed
+    public static func == (a: LiveTranslationSDK_iOS.SocketDomain.WebSocketAction, b: LiveTranslationSDK_iOS.SocketDomain.WebSocketAction) -> Swift.Bool
+  }
+}
+public class LiveTranslationService {
+  public init()
+  @objc deinit
+}
+extension LiveTranslationSDK_iOS.LiveTranslationService {
+  public func getChatRoomInfo(_ requestModel: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request) async throws(LiveTranslationSDK_iOS.CompositeErrorRepository) -> LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response
+}
+extension LiveTranslationSDK_iOS.LiveTranslationService {
+  public func getChatRoomInfoPublisher(_ requestModel: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request) -> Combine.AnyPublisher<LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response, LiveTranslationSDK_iOS.CompositeErrorRepository>
+}
+extension LiveTranslationSDK_iOS.LiveTranslationService {
+  public func getLangSet(_ request: LiveTranslationSDK_iOS.LanguageEntity.Request.LangSet?) async throws(LiveTranslationSDK_iOS.CompositeErrorRepository) -> LiveTranslationSDK_iOS.LanguageEntity.Response.LangSet
+  public func getLangList() async throws(LiveTranslationSDK_iOS.CompositeErrorRepository) -> [LiveTranslationSDK_iOS.LanguageEntity.Response.LanguageItem]
+}
+extension LiveTranslationSDK_iOS.LiveTranslationService {
+  public func getLangSetPublisher(_ request: LiveTranslationSDK_iOS.LanguageEntity.Request.LangSet?) -> Combine.AnyPublisher<LiveTranslationSDK_iOS.LanguageEntity.Response.LangSet, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func getLangListPublisher() -> Combine.AnyPublisher<[LiveTranslationSDK_iOS.LanguageEntity.Response.LanguageItem], LiveTranslationSDK_iOS.CompositeErrorRepository>
+}
+extension LiveTranslationSDK_iOS.LiveTranslationService {
+  public func recordConnection() -> _Concurrency.AsyncThrowingStream<LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, any Swift.Error>
+  public func chatConnection(_ requestItem: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest) -> _Concurrency.AsyncThrowingStream<LiveTranslationSDK_iOS.RealTimeEntity.ChatStream, any Swift.Error>
+  public func recordDisconnection()
+  public func chatDisconnection()
+  public func sendSTTConnection(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest) async throws
+  public func requestTTSURL(_ requestModel: LiveTranslationSDK_iOS.TTSEntity.TTS.Request) throws
+  public func sendRealtimeChat(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request) throws
+  public func sendNewMessage(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Message.Request) async throws
+  public func requestBatchTranslation(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request) throws
+}
+extension LiveTranslationSDK_iOS.LiveTranslationService {
+  public func recordConnectionInPublisher() -> Combine.AnyPublisher<LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func chatConnectionInPublisher(_ requestItem: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest) -> Combine.AnyPublisher<LiveTranslationSDK_iOS.RealTimeEntity.ChatStream, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func recordDisconnectionInPublisher()
+  public func chatDisconnectionInPublisher()
+  public func sendSTTConnectionInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func requestTTSURLInPublisher(_ requestModel: LiveTranslationSDK_iOS.TTSEntity.TTS.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func sendRealtimeChatInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func sendNewMessageInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Message.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
+  public func requestBatchTranslationInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum Edit {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.Edit {
+  public struct Request : Swift.Equatable, Swift.Codable {
+    public let chatRoomID: Swift.String
+    public let chatID: Swift.String
+    public let text: Swift.String
+    public let timestamp: Swift.Int
+    public init(chatRoomID: Swift.String, chatID: Swift.String, text: Swift.String, timestamp: Swift.Int)
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Edit.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Edit.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.UserEntity {
+  public enum UserInfo {
+  }
+}
+extension LiveTranslationSDK_iOS.UserEntity.UserInfo {
+  public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let user: LiveTranslationSDK_iOS.UserEntity.UserInfo.User
+    public let token: Swift.String
+    public static func == (a: LiveTranslationSDK_iOS.UserEntity.UserInfo.Response, b: LiveTranslationSDK_iOS.UserEntity.UserInfo.Response) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct User : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public enum UserType : Swift.String, Swift.Equatable, Swift.Codable {
+      case host
+      case manager
+      case unknown
+      public init?(rawValue: Swift.String)
+      public typealias RawValue = Swift.String
+      public var rawValue: Swift.String {
+        get
+      }
+    }
+    public let defaultLangCode: Swift.String
+    public let username: Swift.String
+    public let langList: [LiveTranslationSDK_iOS.LanguageEntity.Response.LanguageItem]?
+    public let STTAPIToken: Swift.String
+    public var userType: LiveTranslationSDK_iOS.UserEntity.UserInfo.User.UserType {
       get
     }
+    public static func == (a: LiveTranslationSDK_iOS.UserEntity.UserInfo.User, b: LiveTranslationSDK_iOS.UserEntity.UserInfo.User) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum Delete {
+  }
+}
+extension LiveTranslationSDK_iOS.ChatRoomEntity.Delete {
+  public struct Request : Swift.Codable, Swift.Equatable {
+    public let interactionKey: Swift.String
+    public init(interactionKey: Swift.String)
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Delete.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Delete.Request) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
 }
@@ -799,421 +1173,42 @@ extension LiveTranslationSDK_iOS.RealTimeEntity.Question.Response {
     public init(from decoder: any Swift.Decoder) throws
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public enum RecordStream : Swift.Equatable {
-    case connect
-    case disconnect
-    case peerClosed
-    case response(LiveTranslationSDK_iOS.RealTimeEntity.STT.Response)
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, b: LiveTranslationSDK_iOS.RealTimeEntity.RecordStream) -> Swift.Bool
-  }
-  public enum ChatStream : Swift.Equatable {
-    case connect
-    case disconnect
-    case peerClosed
-    case responseChat(LiveTranslationSDK_iOS.RealTimeEntity.Chat.Response)
-    case responseTTS(LiveTranslationSDK_iOS.TTSEntity.TTS.Response)
-    case responseQuestion(LiveTranslationSDK_iOS.RealTimeEntity.Question.Response)
-    case responseBatchTranslation(LiveTranslationSDK_iOS.RealTimeEntity.Translation.Response)
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.ChatStream, b: LiveTranslationSDK_iOS.RealTimeEntity.ChatStream) -> Swift.Bool
+extension LiveTranslationSDK_iOS.ChatRoomEntity {
+  public enum Make {
   }
 }
-extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public enum RecordStreamAction : Swift.Equatable, Swift.Sendable {
-    case connect
-    case draftData(LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction.DraftData?)
-    public struct DraftData : Swift.Equatable, Swift.Sendable {
-      public let preText: Swift.String
-      public let bufferList: [Swift.Int16]
-      public let rms: Swift.Float
-      public init(preText: Swift.String, bufferList: [Swift.Int16], rms: Swift.Float)
-      public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction.DraftData, b: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction.DraftData) -> Swift.Bool
-    }
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction, b: LiveTranslationSDK_iOS.RealTimeEntity.RecordStreamAction) -> Swift.Bool
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public enum STT : Swift.Equatable {
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT, b: LiveTranslationSDK_iOS.RealTimeEntity.STT) -> Swift.Bool
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity.STT {
-  public struct ConnectionRequest : Swift.Equatable, Swift.Codable {
-    public init(command: Swift.String, flittoAPIKey: Swift.String, framesFormat: Swift.String, language: Swift.String, sampleRate: Swift.Int, encoding: Swift.String, bitDepth: Swift.Int, includeSmallerModel: Swift.String = "Y", timeSlice: Swift.Int = 100, useRealtimeV2: Swift.String = "Y")
-    public let command: Swift.String
-    public let flittoAPIKey: Swift.String
-    public let framesFormat: Swift.String
-    public let language: Swift.String
-    public let sampleRate: Swift.Int
-    public let encoding: Swift.String
-    public let bitDepth: Swift.Int
-    public let includeSmallerModel: Swift.String
-    public let timeSlice: Swift.Int
-    public let useRealtimeV2: Swift.String
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct STTRequest : Swift.Equatable, Swift.Codable {
-    public init(command: Swift.String, transcriptID: Swift.String, buffer: [Swift.Int16]?, timestamp: Swift.Double? = Date.now.timeIntervalSince1970 * 1000, language: Swift.String?)
-    public let command: Swift.String
-    public let transcriptID: Swift.String
-    public let buffer: [Swift.Int16]?
-    public let timestamp: Swift.Double?
-    public let language: Swift.String?
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.STTRequest, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.STTRequest) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity.STT {
-  public struct Response : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let command: Swift.String?
-    public let connectionID: Swift.String?
-    public let data: LiveTranslationSDK_iOS.RealTimeEntity.STT.ContentData?
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.Response, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct ContentData : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let transcriptID: Swift.String
-    public let text: Swift.String?
-    public let duration: Swift.Double?
-    public let language: Swift.String?
-    public let smallerModelText: Swift.String?
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.STT.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.STT.ContentData) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity {
-  public enum Translation : Swift.Equatable {
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation) -> Swift.Bool
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity.Translation {
-  public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let taskType: Swift.String
-    public let data: [LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData]
-    public init(data: [LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData])
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request {
-  public struct ContentData : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public init(chatRoomID: Swift.String, chatID: Swift.String, srcLangCode: Swift.String, dstLangCode: Swift.String, timestamp: Swift.Int, text: Swift.String)
-    public let chatRoomID: Swift.String
-    public let chatID: Swift.String
-    public let srcLangCode: Swift.String
-    public let dstLangCode: Swift.String
-    public let timestamp: Swift.Int
-    public let text: Swift.String
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request.ContentData) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.RealTimeEntity.Translation {
-  public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public let metaData: LiveTranslationSDK_iOS.RealTimeEntity.MetaData
-    public let contentData: LiveTranslationSDK_iOS.RealTimeEntity.Translation.ContentData
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Response, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct ContentData : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public let chatList: [LiveTranslationSDK_iOS.TranslationEntity.TR.Response]
-    public var listType: LiveTranslationSDK_iOS.RealTimeEntity.ListType? {
-      get
-    }
-    public static func == (a: LiveTranslationSDK_iOS.RealTimeEntity.Translation.ContentData, b: LiveTranslationSDK_iOS.RealTimeEntity.Translation.ContentData) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-public enum SocketDomain {
-}
-extension LiveTranslationSDK_iOS.SocketDomain {
-  public enum WebSocketMessage : Swift.Equatable {
-    case string(Swift.String)
-    case data(Foundation.Data)
-    public static func == (a: LiveTranslationSDK_iOS.SocketDomain.WebSocketMessage, b: LiveTranslationSDK_iOS.SocketDomain.WebSocketMessage) -> Swift.Bool
-  }
-  public enum WebSocketAction : Swift.Equatable {
-    case connect
-    case message(LiveTranslationSDK_iOS.SocketDomain.WebSocketMessage)
-    case error(LiveTranslationSDK_iOS.CompositeErrorRepository)
-    case cancel
-    case disconnect(Swift.String, Swift.UInt16)
-    case peerClosed
-    public static func == (a: LiveTranslationSDK_iOS.SocketDomain.WebSocketAction, b: LiveTranslationSDK_iOS.SocketDomain.WebSocketAction) -> Swift.Bool
-  }
-}
-public enum TranslationEntity {
-}
-extension LiveTranslationSDK_iOS.TranslationEntity {
-  public struct CompositeChatItem : Swift.Equatable, Swift.Identifiable, Swift.Sendable {
-    public init(item: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item, trItem: LiveTranslationSDK_iOS.TranslationEntity.TR.Response?, ttsData: Foundation.Data?, dstLangCode: Swift.String)
-    public let item: LiveTranslationSDK_iOS.ChatRoomEntity.List.Response.Item
-    public let trItem: LiveTranslationSDK_iOS.TranslationEntity.TR.Response?
-    public let ttsData: Foundation.Data?
-    public let dstLangCode: Swift.String
-    public var id: Swift.String {
-      get
-    }
-    public func mutate(trItem: LiveTranslationSDK_iOS.TranslationEntity.TR.Response?) -> LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem
-    public func mutate(ttsData: Foundation.Data?) -> LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem
-    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem, b: LiveTranslationSDK_iOS.TranslationEntity.CompositeChatItem) -> Swift.Bool
-    public typealias ID = Swift.String
-  }
-}
-extension LiveTranslationSDK_iOS.TranslationEntity {
-  public enum TR : Swift.Equatable {
-    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.TR, b: LiveTranslationSDK_iOS.TranslationEntity.TR) -> Swift.Bool
-  }
-}
-extension LiveTranslationSDK_iOS.TranslationEntity.TR {
-  public struct Request : Swift.Equatable, Swift.Codable {
-    public init(chatRoomID: Swift.String, chatID: Swift.String, timestamp: Swift.Int, text: Swift.String, srcLangCode: Swift.String, dstLangCode: Swift.String)
-    public let chatRoomID: Swift.String
-    public let chatID: Swift.String
-    public let timestamp: Swift.Int
-    public let text: Swift.String
-    public let srcLangCode: Swift.String
-    public let dstLangCode: Swift.String
-    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.TR.Request, b: LiveTranslationSDK_iOS.TranslationEntity.TR.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct Response : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public init(srcLangCode: Swift.String, dstLangCode: Swift.String, content: Swift.String, text: Swift.String, chatRoomID: Swift.String, chatID: Swift.String, timestamp: Swift.Int)
-    public let srcLangCode: Swift.String
-    public let dstLangCode: Swift.String
-    public let content: Swift.String
-    public let text: Swift.String
-    public let chatRoomID: Swift.String
-    public let chatID: Swift.String
-    public let timestamp: Swift.Int
-    public static func == (a: LiveTranslationSDK_iOS.TranslationEntity.TR.Response, b: LiveTranslationSDK_iOS.TranslationEntity.TR.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-public enum TTSEntity {
-}
-extension LiveTranslationSDK_iOS.TTSEntity {
-  public enum TTS {
-  }
-}
-extension LiveTranslationSDK_iOS.TTSEntity.TTS {
-  public struct Request : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public init(data: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData)
-    public struct RequestData : Swift.Equatable, Swift.Codable, Swift.Sendable {
-      public init(chatRoomID: Swift.String, chatID: Swift.String, timestamp: Swift.Int, text: Swift.String, langCode: Swift.String)
-      public let chatRoomID: Swift.String
-      public let chatID: Swift.String
-      public let timestamp: Swift.Int
-      public let text: Swift.String
-      public let langCode: Swift.String
-      public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData, b: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData) -> Swift.Bool
-      public func encode(to encoder: any Swift.Encoder) throws
-      public init(from decoder: any Swift.Decoder) throws
-    }
-    public let taskType: Swift.String
-    public let data: LiveTranslationSDK_iOS.TTSEntity.TTS.Request.RequestData
-    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.Request, b: LiveTranslationSDK_iOS.TTSEntity.TTS.Request) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.TTSEntity.TTS {
-  public struct Response : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let metaData: LiveTranslationSDK_iOS.RealTimeEntity.MetaData
-    public let ttsData: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSData
-    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.Response, b: LiveTranslationSDK_iOS.TTSEntity.TTS.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-extension LiveTranslationSDK_iOS.TTSEntity.TTS {
-  public struct TTSData : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let listType: Swift.String
-    public let chatList: [LiveTranslationSDK_iOS.TTSEntity.TTS.TTSItem]
-    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSData, b: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSData) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct TTSItem : Swift.Equatable, Swift.Codable, Swift.Sendable {
-    public let ttsURL: Swift.String
-    public let langCode: Swift.String
-    public let chatRoomID: Swift.String
-    public let chatID: Swift.String
-    public let text: Swift.String
-    public let timestamp: Swift.Int
-    public static func == (a: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSItem, b: LiveTranslationSDK_iOS.TTSEntity.TTS.TTSItem) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-}
-public enum UserEntity {
-}
-extension LiveTranslationSDK_iOS.UserEntity {
-  public enum ChatRoom {
-  }
-}
-extension LiveTranslationSDK_iOS.UserEntity.ChatRoom {
+extension LiveTranslationSDK_iOS.ChatRoomEntity.Make {
   public struct Request : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public let afterTimestamp: Swift.Int?
-    public init(afterTimestamp: Swift.Int? = .none)
-    public static func == (a: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Request, b: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Request) -> Swift.Bool
+    public init(chatRoomTitle: Swift.String, srcLangCode: Swift.String, langCodeList: [Swift.String]? = .none, password: Swift.String?, useQnA: Swift.Bool)
+    public let chatRoomTitle: Swift.String
+    public let srcLangCode: Swift.String
+    public let langCodeList: [Swift.String]?
+    public let password: Swift.String?
+    public let useQnA: Swift.String
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Request, b: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Request) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
-  public enum Response {
-    public struct Item : Swift.Codable, Swift.Equatable, Swift.Identifiable, Swift.Sendable {
-      public let srcLangCode: Swift.String
-      public let interactionKey: Swift.String
-      public let chatRoomTitle: Swift.String
-      public let createdTimestamp: Swift.Int
-      public let chatRoomID: Swift.String
-      public let username: Swift.String
-      public let webChatRoomURL: Swift.String
-      public let langCodeList: [Swift.String]?
-      public var id: Swift.String {
-        get
-      }
-      public var useQnA: Swift.Bool {
-        get
-      }
-      public var usePassword: Swift.Bool {
-        get
-      }
-      public static func == (a: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Response.Item, b: LiveTranslationSDK_iOS.UserEntity.ChatRoom.Response.Item) -> Swift.Bool
-      public typealias ID = Swift.String
-      public func encode(to encoder: any Swift.Encoder) throws
-      public init(from decoder: any Swift.Decoder) throws
-    }
-  }
-}
-extension LiveTranslationSDK_iOS.UserEntity {
-  public enum UserInfo {
-  }
-}
-extension LiveTranslationSDK_iOS.UserEntity.UserInfo {
   public struct Response : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public let user: LiveTranslationSDK_iOS.UserEntity.UserInfo.User
-    public let token: Swift.String
-    public static func == (a: LiveTranslationSDK_iOS.UserEntity.UserInfo.Response, b: LiveTranslationSDK_iOS.UserEntity.UserInfo.Response) -> Swift.Bool
-    public func encode(to encoder: any Swift.Encoder) throws
-    public init(from decoder: any Swift.Decoder) throws
-  }
-  public struct User : Swift.Codable, Swift.Equatable, Swift.Sendable {
-    public enum UserType : Swift.String, Swift.Equatable, Swift.Codable {
-      case host
-      case manager
-      case unknown
-      public init?(rawValue: Swift.String)
-      public typealias RawValue = Swift.String
-      public var rawValue: Swift.String {
-        get
-      }
-    }
-    public let defaultLangCode: Swift.String
-    public let username: Swift.String
-    public let langList: [LiveTranslationSDK_iOS.LanguageEntity.Response.LanguageItem]?
-    public let STTAPIToken: Swift.String
-    public var userType: LiveTranslationSDK_iOS.UserEntity.UserInfo.User.UserType {
+    public init(chatRoomID: Swift.String, interactionKey: Swift.String, chatRoomTitle: Swift.String, srcLangCode: Swift.String, hostUserName: Swift.String, webChatRoomURL: Swift.String, langCodeList: [Swift.String]?, useQnA: Swift.Bool, usePassword: Swift.Bool, password: Swift.String?)
+    public let chatRoomID: Swift.String
+    public let interactionKey: Swift.String
+    public let chatRoomTitle: Swift.String
+    public let srcLangCode: Swift.String
+    public let hostUserName: Swift.String
+    public let webChatRoomURL: Swift.String
+    public let langCodeList: [Swift.String]?
+    public let password: Swift.String?
+    public var useQnA: Swift.Bool {
       get
     }
-    public static func == (a: LiveTranslationSDK_iOS.UserEntity.UserInfo.User, b: LiveTranslationSDK_iOS.UserEntity.UserInfo.User) -> Swift.Bool
+    public var usePassword: Swift.Bool {
+      get
+    }
+    public static func == (a: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response, b: LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response) -> Swift.Bool
     public func encode(to encoder: any Swift.Encoder) throws
     public init(from decoder: any Swift.Decoder) throws
   }
-}
-public enum CompositeError : Swift.Error {
-  case offline
-  case other(any Swift.Error)
-}
-extension LiveTranslationSDK_iOS.CompositeError : Foundation.LocalizedError {
-  public var errorDescription: Swift.String? {
-    get
-  }
-}
-public enum LanguageCodeFunctor {
-  public static var deviceCode: Swift.String {
-    get
-  }
-  public static func savedDeviceCode(langCode: Swift.String?)
-  public static func getOSDefaultLangCode() -> Swift.String
-}
-public enum LanguageFunctor {
-}
-extension LiveTranslationSDK_iOS.LanguageFunctor {
-  public static func isRTL(string: Swift.String) -> Swift.Bool
-  public static func isRTL(string: Swift.String) async -> Swift.Bool
-  public static func isRTLSupport(langCode: Swift.String) -> Swift.Bool
-  public static func isRTLSupport(langCode: Swift.String) async -> Swift.Bool
-  public static func getLanguageCode(string: Swift.String) -> Swift.String?
-}
-public class TTSLanguageCheckFunctor {
-  public init()
-  @objc deinit
-}
-extension LiveTranslationSDK_iOS.TTSLanguageCheckFunctor {
-  public func isSupportLanguageBySTT(langCode: Swift.String) async -> Swift.Bool
-}
-public struct RealTimeRepository {
-}
-extension LiveTranslationSDK_iOS.RealTimeRepository {
-  public func recordConnection() -> _Concurrency.AsyncThrowingStream<LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, any Swift.Error>
-}
-public class LiveTranslationService {
-  public init()
-  @objc deinit
-}
-extension LiveTranslationSDK_iOS.LiveTranslationService {
-  #if compiler(>=5.3) && $TypedThrows
-  public func getChatRoomInfo(_ requestModel: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request) async throws(LiveTranslationSDK_iOS.CompositeErrorRepository) -> LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response
-  #endif
-}
-extension LiveTranslationSDK_iOS.LiveTranslationService {
-  public func getChatRoomInfoPublisher(_ requestModel: LiveTranslationSDK_iOS.ChatRoomEntity.Join.Request) -> Combine.AnyPublisher<LiveTranslationSDK_iOS.ChatRoomEntity.Make.Response, LiveTranslationSDK_iOS.CompositeErrorRepository>
-}
-extension LiveTranslationSDK_iOS.LiveTranslationService {
-  #if compiler(>=5.3) && $TypedThrows
-  public func getLangSet(_ request: LiveTranslationSDK_iOS.LanguageEntity.Request.LangSet?) async throws(LiveTranslationSDK_iOS.CompositeErrorRepository) -> LiveTranslationSDK_iOS.LanguageEntity.Response.LangSet
-  #endif
-  #if compiler(>=5.3) && $TypedThrows
-  public func getLangList() async throws(LiveTranslationSDK_iOS.CompositeErrorRepository) -> [LiveTranslationSDK_iOS.LanguageEntity.Response.LanguageItem]
-  #endif
-}
-extension LiveTranslationSDK_iOS.LiveTranslationService {
-  public func getLangSetPublisher(_ request: LiveTranslationSDK_iOS.LanguageEntity.Request.LangSet?) -> Combine.AnyPublisher<LiveTranslationSDK_iOS.LanguageEntity.Response.LangSet, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func getLangListPublisher() -> Combine.AnyPublisher<[LiveTranslationSDK_iOS.LanguageEntity.Response.LanguageItem], LiveTranslationSDK_iOS.CompositeErrorRepository>
-}
-extension LiveTranslationSDK_iOS.LiveTranslationService {
-  public func recordConnection() -> _Concurrency.AsyncThrowingStream<LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, any Swift.Error>
-  public func chatConnection(_ requestItem: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest) -> _Concurrency.AsyncThrowingStream<LiveTranslationSDK_iOS.RealTimeEntity.ChatStream, any Swift.Error>
-  public func recordDisconnection()
-  public func chatDisconnection()
-  public func sendSTTConnection(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest) async throws
-  public func requestTTSURL(_ requestModel: LiveTranslationSDK_iOS.TTSEntity.TTS.Request) throws
-  public func sendRealtimeChat(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request) throws
-  public func sendNewMessage(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Message.Request) async throws
-  public func requestBatchTranslation(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request) throws
-}
-extension LiveTranslationSDK_iOS.LiveTranslationService {
-  public func recordConnectionInPublisher() -> Combine.AnyPublisher<LiveTranslationSDK_iOS.RealTimeEntity.RecordStream, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func chatConnectionInPublisher(_ requestItem: LiveTranslationSDK_iOS.RealTimeEntity.Connection.ChatRequest) -> Combine.AnyPublisher<LiveTranslationSDK_iOS.RealTimeEntity.ChatStream, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func recordDisconnectionInPublisher()
-  public func chatDisconnectionInPublisher()
-  public func sendSTTConnectionInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.STT.ConnectionRequest) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func requestTTSURLInPublisher(_ requestModel: LiveTranslationSDK_iOS.TTSEntity.TTS.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func sendRealtimeChatInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Chat.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func sendNewMessageInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Message.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
-  public func requestBatchTranslationInPublisher(_ requestModel: LiveTranslationSDK_iOS.RealTimeEntity.Translation.Request) -> Combine.AnyPublisher<Swift.Void, LiveTranslationSDK_iOS.CompositeErrorRepository>
 }
 extension LiveTranslationSDK_iOS.RealTimeEntity.ListType : Swift.Hashable {}
 extension LiveTranslationSDK_iOS.RealTimeEntity.ListType : Swift.RawRepresentable {}
