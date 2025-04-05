@@ -10,15 +10,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		WWSaUEK3vok7yGvp7NfppnoSo0M=
+		y4KtB3plpTDDo2Zur6/MJncsEc4=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		lEIMx5HApArXCPWm04PAC9Tya5g=
+		l8l+vHIjQ7RSHmKhJiWM+VXik7c=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		5W9XEeZOj96Dp9/BqdsPbkopLNQ=
+		jCNQE1xw8CTo1adcAA45Vlw5i7M=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		5W9XEeZOj96Dp9/BqdsPbkopLNQ=
+		jCNQE1xw8CTo1adcAA45Vlw5i7M=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		7GsJozEhhQgoxGL0ybxp6/s/5eA=
+		rkt0vp8xXAig74qGjBWfrx97xiE=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		lEIMx5HApArXCPWm04PAC9Tya5g=
+		l8l+vHIjQ7RSHmKhJiWM+VXik7c=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		XeF1zlCo1/3RbRykky77bCv8jgs=
+		twxrEaUrz94hutiuFAhusCwK17g=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		XeF1zlCo1/3RbRykky77bCv8jgs=
+		twxrEaUrz94hutiuFAhusCwK17g=
 		</data>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		dYcV8uVEkZi4B5q/r9Kz8V1VYA8=
+		LBsHyQOKkKUKZR9Pl/Jp0wvJ8oY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,14 +70,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jEWRuu+1wdi98ED/8wvcQrives5bieDoZnnnlvSCIS0=
+			FTCc+k4H3SNOZ2kIhSGc5VDOdoZj91b2mWwbKFOzczo=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			W3obJ1smYnJmqgeRGLsFwyq9pZfDLkdgJ8k/TWmpMIM=
+			QtOgVcE09d989f3aEZD2G2Ru5E6fgj5kKjB8FPdSg08=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -91,28 +91,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			W3obJ1smYnJmqgeRGLsFwyq9pZfDLkdgJ8k/TWmpMIM=
+			QtOgVcE09d989f3aEZD2G2Ru5E6fgj5kKjB8FPdSg08=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WrheKCRsEpYUy+ZedY6nqFORQ9Vgd9uxROLWPgrQpwo=
+			FVjhkgyWmoGYq8T0zPHX1PBQTFkvfyZNolt/pE9qxd4=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jEWRuu+1wdi98ED/8wvcQrives5bieDoZnnnlvSCIS0=
+			FTCc+k4H3SNOZ2kIhSGc5VDOdoZj91b2mWwbKFOzczo=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sk6C1+YQtjuSNY3XrDZIMvyrAYaOkK8gnnJgAW1YxnU=
+			i89u0ulmlZK2fh+9VViNZdWER2MbcxnXqUYy71TN6Rg=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -126,14 +126,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sk6C1+YQtjuSNY3XrDZIMvyrAYaOkK8gnnJgAW1YxnU=
+			i89u0ulmlZK2fh+9VViNZdWER2MbcxnXqUYy71TN6Rg=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK_iOS.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aYEhRys5uiQe21ptuVF5OQHw3mAgHOtxZr1oQeuHd4E=
+			bxjiXbaEgWGfUNf5WLae674VNaKsShJzeTZYlJD6WLQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
