@@ -18,7 +18,7 @@ struct ContentView: View {
       }
 
       Button(action: { isSelectedLanguageSheet.toggle() }) {
-        Text("Select language (Current language is \(viewModel.langSet?.langCodingKey(viewModel.selectedLangCode) ?? ""))")
+        Text("Select language (Current language is \(viewModel.selectedLangItem?.langORG ?? ""))")
       }
     }
     .task {
@@ -28,7 +28,6 @@ struct ContentView: View {
     .sheet(isPresented: $isSelectedLanguageSheet) {
       SelectLanguageSheet(
         languageList: viewModel.langList,
-        langSet: viewModel.langSet,
         selectedLanguageAction: { langCode in
           viewModel.send(.changeLangCode(langCode))
           isSelectedLanguageSheet = false

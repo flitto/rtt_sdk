@@ -7,10 +7,11 @@ class ViewModel {
   init() { }
 
   var chatList: [TranslationEntity.CompositeChatItem] = []
-  var langSet: LanguageEntity.Response.LangSet? = .none
   var langList: [LanguageEntity.Response.LanguageItem] = []
-  var roomInfo: ChatRoomEntity.Make.Response? = .none
-  var selectedLangCode: String = "en"
+  var selectedLangItem: LanguageEntity.Response.LanguageItem?
+  var selectedLangCode: String {
+    selectedLangItem?.langCode ?? "en"
+  }
 
   let service: LiveTranslationService = .init()
 
@@ -33,8 +34,6 @@ extension ViewModel {
     case .onAppearedPage:
       Task {
         await withTaskGroup(of: Void.self) { [weak self] group in
-          group.addTask { await self?.loadLangSet() }
-          group.addTask { await self?.loadChatRoomInfo(self?.roomNumber) }
           group.addTask { await self?.loadLangList() }
         }
       }
@@ -42,40 +41,21 @@ extension ViewModel {
       Task {
         await connectChatStream(roomNumber)
       }
-    case .changeLangCode(let newLangCode):
-      selectedLangCode = newLangCode
+    case .changeLangCode(let newLang):
+      selectedLangItem = newLang
       Task {
-        await loadLangSet(langCode: newLangCode)
-        await loadTranslation(chatList: chatList, newLangCode)
+        await loadTranslation(chatList: chatList, selectedLangCode)
       }
     }
   }
 }
 
 extension ViewModel {
-  private func loadLangSet(langCode: String = LanguageCodeFunctor.deviceCode) async {
-    do {
-      let langSet = try await service.getLangSet(.init(langCode: langCode))
-      self.langSet = langSet
-    } catch {
-      print(error.displayMessage)
-    }
-  }
 
   private func loadLangList() async {
     do {
-      let langList = try await service.getLangList()
+      let langList = try await service.getSupportLanguages()
       self.langList = langList
-    } catch {
-      print(error.displayMessage)
-    }
-  }
-
-  private func loadChatRoomInfo(_ roomNumber: String?) async {
-    do {
-      guard let roomNumber else { return assert(true, "roomNumber is required") }
-      let roomInfo = try await service.getChatRoomInfo(.init(interactionKey: roomNumber))
-      self.roomInfo = roomInfo
     } catch {
       print(error.displayMessage)
     }
@@ -297,7 +277,7 @@ extension ViewModel {
   enum InputAction {
     case onAppearedPage
     case connectChatStream
-    case changeLangCode(String)
+    case changeLangCode(LanguageEntity.Response.LanguageItem)
   }
 }
 
