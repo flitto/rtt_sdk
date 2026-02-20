@@ -4,5 +4,8 @@
 xcuserdata/
 DerivedData/
 .swiftpm/configuration/registries.json
+.swiftpm/configuration/mirrors.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 .netrc
+ios/LT_Demo/LT_Demo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved.public-backup
+ios/LT_Demo/LT_Demo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved.tmp-local

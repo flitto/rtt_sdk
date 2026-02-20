@@ -53,6 +53,8 @@ ALLOWED_PATTERNS=(
   '^scripts/set-local-core-mirror\.sh$'
   '^scripts/unset-local-core-mirror\.sh$'
   '^scripts/preflight-public-release\.sh$'
+  '^scripts/resolve-demo-local-packages\.sh$'
+  '^scripts/restore-demo-public-resolved\.sh$'
   '^\.gitignore$'
 )
 
@@ -81,22 +83,28 @@ fi
 DANGER_REGEX='interactord/Live_translation_SDK|file:///Users/|BEGIN RSA PRIVATE KEY|BEGIN OPENSSH PRIVATE KEY|AKIA[0-9A-Z]{16}|SECRET|TOKEN|PASSWORD'
 
 TMP_FILE="$(mktemp)"
+DIFF_INPUT_FILE="$(mktemp)"
+{ git diff "$BASE_REF"...HEAD; git diff; git diff --cached; } | grep -Ev '^[ +-]DANGER_REGEX=' >"$DIFF_INPUT_FILE"
+
 if command -v rg >/dev/null 2>&1; then
-  if { git diff "$BASE_REF"...HEAD; git diff; git diff --cached; } | rg -n --pcre2 "$DANGER_REGEX" >"$TMP_FILE"; then
+  if rg -n --pcre2 "$DANGER_REGEX" "$DIFF_INPUT_FILE" >"$TMP_FILE"; then
     echo "error: suspicious content found in diff:"
     cat "$TMP_FILE"
+    rm -f "$DIFF_INPUT_FILE"
     rm -f "$TMP_FILE"
     exit 1
   fi
 else
-  if { git diff "$BASE_REF"...HEAD; git diff; git diff --cached; } | grep -nE "$DANGER_REGEX" >"$TMP_FILE"; then
+  if grep -nE "$DANGER_REGEX" "$DIFF_INPUT_FILE" >"$TMP_FILE"; then
     echo "error: suspicious content found in diff:"
     cat "$TMP_FILE"
+    rm -f "$DIFF_INPUT_FILE"
     rm -f "$TMP_FILE"
     exit 1
   fi
 fi
 
+rm -f "$DIFF_INPUT_FILE"
 rm -f "$TMP_FILE"
 
 echo "Preflight passed:"
