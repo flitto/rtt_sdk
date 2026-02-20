@@ -1,0 +1,6 @@
+framework module LiveTranslationSDK_iOS {
+  umbrella header "LiveTranslationSDK_iOS.h"
+  export *
+
+  module * { export * }
+}
