@@ -9,7 +9,7 @@ struct ContentView: View {
       ScrollView {
         LazyVStack {
           ForEach(viewModel.chatList) { item in
-            Text(item.trItem?.content ?? item.item.text)
+            Text(item.textForTr.isEmpty ? item.text : item.textForTr)
               .frame(maxWidth: .infinity, alignment: .leading)
               .multilineTextAlignment(.leading)
               .padding()
@@ -18,7 +18,7 @@ struct ContentView: View {
       }
 
       Button(action: { isSelectedLanguageSheet.toggle() }) {
-        Text("Select language (Current language is \(viewModel.selectedLangItem?.langORG ?? ""))")
+        Text("Select language (Current language is \(viewModel.selectedLangItem?.languageLocal ?? ""))")
       }
     }
     .task {

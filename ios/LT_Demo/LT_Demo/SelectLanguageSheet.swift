@@ -2,15 +2,15 @@ import SwiftUI
 import LiveTranslationSDK_iOS
 
 struct SelectLanguageSheet: View {
-  let languageList: [LanguageEntity.Response.LanguageItem]
-  let selectedLanguageAction: (LanguageEntity.Response.LanguageItem) -> Void
+  let languageList: [LanguageItemEntity]
+  let selectedLanguageAction: (LanguageItemEntity) -> Void
 
   var body: some View {
     ScrollView {
       LazyVStack {
-        ForEach(languageList, id: \.id) { langItem in
+        ForEach(languageList) { langItem in
           Button(action: { selectedLanguageAction(langItem) }) {
-            Text(langItem.langORG)
+            Text(langItem.languageLocal)
               .frame(maxWidth: .infinity, alignment: .leading)
               .padding()
               .contentShape(.rect)
