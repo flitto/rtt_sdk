@@ -25,7 +25,7 @@ extension ViewModel {
       startChatStream()
     case .changeLangCode(let newLang):
       selectedLangItem = newLang
-      Task { await audience.changeDstLanguage(newLang.languageCode) }
+      Task { await audience.requestTranslationLanguage(newLang.languageCode) }
     case .refresh:
       Task { await refresh() }
     }
@@ -74,7 +74,7 @@ extension ViewModel {
     isRefreshing = true
     defer { isRefreshing = false }
 
-    await audience.disconnect()
+    await audience.disconnectChat()
     chatList = []
     await loadChatRoomTitle()
     startChatStream()
@@ -86,7 +86,7 @@ extension ViewModel {
     #endif
     await loadChatRoomTitle()
     do {
-      for try await chatList in await audience.connect() {
+      for try await chatList in await audience.connectChat() {
         self.chatList = chatList
         #if DEBUG
         print("[LT_Demo] chat update count=\(chatList.count)")
