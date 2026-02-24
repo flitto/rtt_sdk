@@ -11,10 +11,12 @@ struct SelectLanguageSheet: View {
         ForEach(languageList) { langItem in
           Button(action: { selectedLanguageAction(langItem) }) {
             Text(langItem.languageLocal)
+              .foregroundStyle(.primary)
               .frame(maxWidth: .infinity, alignment: .leading)
               .padding()
               .contentShape(.rect)
           }
+          .buttonStyle(.plain)
         }
       }
     }
