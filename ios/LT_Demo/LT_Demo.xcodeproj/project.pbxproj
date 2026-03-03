@@ -7,11 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2997B9A02D87FD9C0092A4F8 /* rtt-sdk in Frameworks */ = {isa = PBXBuildFile; productRef = 2997B99F2D87FD9C0092A4F8 /* rtt-sdk */; };
+		F0B100022F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */; };
+		F0B100032F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F0B100042F0000010092A4F8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F0B100032F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		292F03EC2D87FD510093F66E /* LT_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LT_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = LiveTranslationSDK_iOS.xcframework; path = ../binary/LiveTranslationSDK_iOS.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -27,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2997B9A02D87FD9C0092A4F8 /* rtt-sdk in Frameworks */,
+				F0B100022F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				292F03EE2D87FD510093F66E /* LT_Demo */,
+				F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */,
 				292F03ED2D87FD510093F66E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,6 +76,7 @@
 			buildPhases = (
 				292F03E82D87FD510093F66E /* Sources */,
 				292F03E92D87FD510093F66E /* Frameworks */,
+				F0B100042F0000010092A4F8 /* Embed Frameworks */,
 				292F03EA2D87FD510093F66E /* Resources */,
 			);
 			buildRules = (
@@ -69,9 +87,6 @@
 				292F03EE2D87FD510093F66E /* LT_Demo */,
 			);
 			name = LT_Demo;
-			packageProductDependencies = (
-				2997B99F2D87FD9C0092A4F8 /* rtt-sdk */,
-			);
 			productName = LT_Demo;
 			productReference = 292F03EC2D87FD510093F66E /* LT_Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -100,9 +115,6 @@
 			);
 			mainGroup = 292F03E32D87FD510093F66E;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				2997B99E2D87FD9C0092A4F8 /* XCRemoteSwiftPackageReference "rtt_sdk" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 292F03ED2D87FD510093F66E /* Products */;
 			projectDirPath = "";
@@ -332,24 +344,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		2997B99E2D87FD9C0092A4F8 /* XCRemoteSwiftPackageReference "rtt_sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/flitto/rtt_sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.1;
-			};
 		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2997B99F2D87FD9C0092A4F8 /* rtt-sdk */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2997B99E2D87FD9C0092A4F8 /* XCRemoteSwiftPackageReference "rtt_sdk" */;
-			productName = "rtt-sdk";
-		};
-/* End XCSwiftPackageProductDependency section */
-	};
 	rootObject = 292F03E42D87FD510093F66E /* Project object */;
 }
