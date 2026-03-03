@@ -1,4 +1,9 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 struct ContentView: View {
   @State private var viewModel = ViewModel()
@@ -50,9 +55,9 @@ struct ContentView: View {
           scrollToBottom(using: scrollProxy, animated: oldValue != nil)
         }
       }
-      .background(Color(.systemGray6))
+      .background(Color.demoBackground)
     }
-    .background(Color(.systemGray6))
+    .background(Color.demoBackground)
     .task {
       viewModel.send(.onAppearedPage)
       viewModel.send(.connectChatStream)
@@ -87,7 +92,9 @@ struct ContentView: View {
         .disabled(viewModel.isRefreshing)
       }
 
-      Button(action: { isSelectedLanguageSheet = true }) {
+      Button {
+        isSelectedLanguageSheet = true
+      } label: {
         HStack(spacing: 10) {
           Image(systemName: "globe")
             .font(.system(size: 14))
@@ -99,10 +106,10 @@ struct ContentView: View {
         .foregroundStyle(.primary)
         .padding(.horizontal, 20)
         .padding(.vertical, 14)
-        .background(Color(.systemBackground))
+        .background(Color.demoSurface)
         .overlay(
           Capsule()
-            .stroke(Color(.systemGray4), lineWidth: 2)
+            .stroke(Color.demoBorder, lineWidth: 2)
         )
         .clipShape(Capsule())
       }
@@ -112,7 +119,7 @@ struct ContentView: View {
     .padding(.horizontal, 24)
     .padding(.top, 24)
     .padding(.bottom, 28)
-    .background(Color(.systemBackground))
+    .background(Color.demoSurface)
     .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
   }
 
@@ -129,20 +136,56 @@ struct ContentView: View {
 
 private struct RealtimeDotsView: View {
   @State private var phase = 0
-  private let timer = Timer.publish(every: 0.32, on: .main, in: .common).autoconnect()
 
   var body: some View {
     HStack(spacing: 4) {
       ForEach(0..<3, id: \.self) { index in
         Circle()
-          .fill(Color(.systemGray3))
+          .fill(Color.demoRealtimeDot)
           .frame(width: 8, height: 8)
           .opacity(phase == index ? 1.0 : 0.35)
       }
     }
-    .onReceive(timer) { _ in
-      phase = (phase + 1) % 3
+    .task {
+      while !Task.isCancelled {
+        try? await Task.sleep(nanoseconds: 320_000_000)
+        phase = (phase + 1) % 3
+      }
     }
     .accessibilityHidden(true)
+  }
+}
+
+private extension Color {
+  static var demoBackground: Color {
+#if canImport(UIKit)
+    Color(UIColor.systemGray6)
+#else
+    Color(NSColor.windowBackgroundColor)
+#endif
+  }
+
+  static var demoSurface: Color {
+#if canImport(UIKit)
+    Color(UIColor.systemBackground)
+#else
+    Color(NSColor.controlBackgroundColor)
+#endif
+  }
+
+  static var demoBorder: Color {
+#if canImport(UIKit)
+    Color(UIColor.systemGray4)
+#else
+    Color(NSColor.separatorColor)
+#endif
+  }
+
+  static var demoRealtimeDot: Color {
+#if canImport(UIKit)
+    Color(UIColor.systemGray3)
+#else
+    Color(NSColor.tertiaryLabelColor)
+#endif
   }
 }

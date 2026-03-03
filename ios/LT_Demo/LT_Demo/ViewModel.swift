@@ -1,9 +1,10 @@
 import Foundation
 import LiveTranslationSDK_iOS
+import Observation
 
 @Observable
 @MainActor
-class ViewModel {
+final class ViewModel {
   init() { }
 
   var chatList: [ChatItemEntity] = []
