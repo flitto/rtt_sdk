@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.flitto.livetranslation.sample.chatguest.model.TYPE_REALTIME
 import com.flitto.livetranslation.sample.chatguest.theme.Grey05
 import com.flitto.livetranslation.sample.chatguest.theme.Grey90
 import com.flitto.livetranslation.sample.chatguest.theme.SampleTheme
@@ -45,9 +44,6 @@ fun ChatMessageContents(
             items = messages,
             key = { index, item ->
                 if (item.chatId.isNotBlank()) item.chatId else "idx-$index"
-            },
-            contentType = { _, item ->
-                if (item.isRealTime) "realtime" else "non_realtime"
             }
         ) { _, item ->
             if (item.text.isNotBlank()) {
@@ -123,9 +119,9 @@ private fun ChatMessageContentsPreview() {
                     text = "print 2"
                 ),
                 ChatHistoryItemEntity(
-                    taskType = TYPE_REALTIME,
                     chatId = "5",
-                    text = "print 3"
+                    text = "print 3",
+                    isRealTime = true
                 )
             ),
             listState = rememberLazyListState()
