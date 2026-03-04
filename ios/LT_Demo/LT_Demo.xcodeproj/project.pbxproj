@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F0B100022F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */; };
-		F0B100032F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F0B100022F0000010092A4F8 /* LiveTranslationSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0B100012F0000010092A4F8 /* LiveTranslationSDK.xcframework */; };
+		F0B100032F0000010092A4F8 /* LiveTranslationSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0B100012F0000010092A4F8 /* LiveTranslationSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +18,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F0B100032F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Embed Frameworks */,
+				F0B100032F0000010092A4F8 /* LiveTranslationSDK.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -27,7 +27,7 @@
 
 /* Begin PBXFileReference section */
 		292F03EC2D87FD510093F66E /* LT_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LT_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = LiveTranslationSDK_iOS.xcframework; path = ../binary/LiveTranslationSDK_iOS.xcframework; sourceTree = "<group>"; };
+		F0B100012F0000010092A4F8 /* LiveTranslationSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = LiveTranslationSDK.xcframework; path = ../binary/LiveTranslationSDK.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,7 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0B100022F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework in Frameworks */,
+				F0B100022F0000010092A4F8 /* LiveTranslationSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				292F03EE2D87FD510093F66E /* LT_Demo */,
-				F0B100012F0000010092A4F8 /* LiveTranslationSDK_iOS.xcframework */,
+				F0B100012F0000010092A4F8 /* LiveTranslationSDK.xcframework */,
 				292F03ED2D87FD510093F66E /* Products */,
 			);
 			sourceTree = "<group>";

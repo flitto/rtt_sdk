@@ -1,0 +1,6 @@
+framework module LiveTranslationSDK {
+  umbrella header "LiveTranslationSDK.h"
+  export *
+
+  module * { export * }
+}

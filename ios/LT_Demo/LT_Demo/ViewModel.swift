@@ -1,5 +1,5 @@
 import Foundation
-import LiveTranslationSDK_iOS
+import LiveTranslationSDK
 import Observation
 
 @Observable

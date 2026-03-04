@@ -1,5 +1,5 @@
 import SwiftUI
-import LiveTranslationSDK_iOS
+import LiveTranslationSDK
 
 struct SelectLanguageSheet: View {
   let languageList: [LanguageItemEntity]
