@@ -14,43 +14,43 @@
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.abi.json</key>
 		<data>
-		/ds6/kKcB0IAmCo4ghz02+SvoCA=
+		/DjIO+e2DTgpJ8D87RQrWHi9ep0=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.private.swiftinterface</key>
 		<data>
-		dceguM9D1Q3NFeJp2Rcvblo6460=
+		ha3xM/3Dh/0ZJEs9ZuMqCH9V8hs=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.swiftdoc</key>
 		<data>
-		o2qAZg5jC1+wf4FxU1woc3ofAjU=
+		yCrpq6gy/AGSYgASIJD7hYnuy48=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.swiftinterface</key>
 		<data>
-		dceguM9D1Q3NFeJp2Rcvblo6460=
+		ha3xM/3Dh/0ZJEs9ZuMqCH9V8hs=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.swiftmodule</key>
 		<data>
-		MXiPxeKyXW5sdlC0kW8kMKA5XPU=
+		5xTXoHCBI3ABb3zfy5bMqhPB1Tw=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.abi.json</key>
 		<data>
-		/ds6/kKcB0IAmCo4ghz02+SvoCA=
+		/DjIO+e2DTgpJ8D87RQrWHi9ep0=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.private.swiftinterface</key>
 		<data>
-		zExm24raqHBKk9dlutrE1uUeNxc=
+		+nha7/pDp6GYL9yboG41xEdXQno=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.swiftdoc</key>
 		<data>
-		P3IDp6+o2H4o3EThihAnlOLDpno=
+		rhA/ddMe8HXS7MfqhQSVC4JeSmU=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.swiftinterface</key>
 		<data>
-		zExm24raqHBKk9dlutrE1uUeNxc=
+		+nha7/pDp6GYL9yboG41xEdXQno=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.swiftmodule</key>
 		<data>
-		JVoFN5V1gDiBPcVKv2Q2uKI1C8k=
+		DYzrpWsbmbdVcoStEadvvHdew9Q=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -70,70 +70,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sv4RB+ZVQD12pKBWN/Yib/B4mKeSV2UvY80pa3f8Rrk=
+			SWUHR45Xsm/vHnlPBvz0GpHt+7GAnDD2hsDlLeLoKJE=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XDBWhqlIkB4OqYPvpYCL9PeG45JKnuOIRwpwjcYMLK4=
+			qoT8atcqj4iJHGehTpphdrKy9fk4W3CVNjW9T9+dOkA=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TXBEoY01gIj0eWJ7BG+b2Y2LOfOHLZmC+R3IXg0mnec=
+			Wb3KYvJ7ucSTnbpYjdcyLEOqbM8f22iYAiKMwzIeu7g=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XDBWhqlIkB4OqYPvpYCL9PeG45JKnuOIRwpwjcYMLK4=
+			qoT8atcqj4iJHGehTpphdrKy9fk4W3CVNjW9T9+dOkA=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-xros-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xm8JYO5xPKGxXXln+PWrw9OFlk29qfY9AVmFM/5PBK4=
+			7dEWpfEEHUGBTsoBbxDZ4M0sTq6OsmAbIaN6gbnV8KI=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sv4RB+ZVQD12pKBWN/Yib/B4mKeSV2UvY80pa3f8Rrk=
+			SWUHR45Xsm/vHnlPBvz0GpHt+7GAnDD2hsDlLeLoKJE=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wj9KLzS0ULOJ2EzcCTvoHg9yO8s2FBjGn8Wa7mGCJG4=
+			ETfQCMp/F8rb2FUSkD0z9qrsUZ40tuW9SJrSuFLRXAs=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9bBcy2Bbpo9l7EylLdG7oG+rRjG8qKFNFfQ9eMIpLnE=
+			hiX7ATKv/7sjKyYw8yq8HOGZPSsoMGbU2AtZIA4gpGk=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wj9KLzS0ULOJ2EzcCTvoHg9yO8s2FBjGn8Wa7mGCJG4=
+			ETfQCMp/F8rb2FUSkD0z9qrsUZ40tuW9SJrSuFLRXAs=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/x86_64-apple-xros-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yO/QOmJplWPgdqZPgDv0MEXRLsH2wBL1foHqy8rC+SI=
+			THZeYbJNj84FJLESNUlV9GISSko7QEVMv3lLmHvYhpo=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

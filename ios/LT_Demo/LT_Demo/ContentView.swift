@@ -60,8 +60,8 @@ struct ContentView: View {
     .background(Color.demoBackground)
     .task {
       viewModel.send(.onAppearedPage)
-      viewModel.send(.connectChatStream)
     }
+    .onDisappear { viewModel.send(.onDisappearedPage) }
     .sheet(isPresented: $isSelectedLanguageSheet) {
       SelectLanguageSheet(
         languageList: viewModel.langList,
@@ -92,28 +92,38 @@ struct ContentView: View {
         .disabled(viewModel.isRefreshing)
       }
 
-      Button {
-        isSelectedLanguageSheet = true
-      } label: {
-        HStack(spacing: 10) {
-          Image(systemName: "globe")
-            .font(.system(size: 14))
-          Text(viewModel.selectedLangItem?.languageLocal ?? "Language")
-            .font(.system(size: 14, weight: .regular))
-          Image(systemName: "chevron.down")
-            .font(.system(size: 14, weight: .medium))
+      HStack(spacing: 10) {
+        Button {
+          isSelectedLanguageSheet = true
+        } label: {
+          HStack(spacing: 10) {
+            Image(systemName: "globe")
+              .font(.system(size: 12))
+            Text(viewModel.selectedLangItem?.languageLocal ?? "Language")
+              .font(.system(size: 12, weight: .regular))
+            Image(systemName: "chevron.down")
+              .font(.system(size: 12, weight: .medium))
+          }
+          .foregroundStyle(.primary)
+          .padding(.horizontal, 10)
+          .padding(.vertical, 8)
+          .background(Color.demoSurface)
+          .overlay(
+            Capsule()
+              .stroke(Color.demoBorder, lineWidth: 2)
+          )
+          .clipShape(Capsule())
         }
-        .foregroundStyle(.primary)
-        .padding(.horizontal, 20)
-        .padding(.vertical, 14)
-        .background(Color.demoSurface)
-        .overlay(
-          Capsule()
-            .stroke(Color.demoBorder, lineWidth: 2)
-        )
-        .clipShape(Capsule())
+        .buttonStyle(.plain)
+
+        if let lastErrorMessage = viewModel.lastErrorMessage, !lastErrorMessage.isEmpty {
+          Text(lastErrorMessage)
+            .font(.system(size: 10, weight: .medium))
+            .foregroundStyle(.red)
+            .lineLimit(2)
+            .truncationMode(.tail)
+        }
       }
-      .buttonStyle(.plain)
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .padding(.horizontal, 24)
