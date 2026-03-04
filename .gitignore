@@ -9,3 +9,4 @@ DerivedData/
 .netrc
 ios/LT_Demo/LT_Demo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved.public-backup
 ios/LT_Demo/LT_Demo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved.tmp-local
+**/*.abi.json

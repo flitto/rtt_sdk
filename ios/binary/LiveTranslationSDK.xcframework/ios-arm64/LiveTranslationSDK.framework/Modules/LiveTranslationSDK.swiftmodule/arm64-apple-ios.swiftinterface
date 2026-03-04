@@ -1,0 +1,90 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target arm64-apple-ios17.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name LiveTranslationSDK
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+import Foundation
+@_exported import LiveTranslationSDK
+import Observation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct ChatItemEntity : Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+  public let taskType: Swift.String
+  public let chatRoomId: Swift.String
+  public let chatId: Swift.String
+  public let interactionKey: Swift.String
+  public let timestamp: Swift.Int
+  public let text: Swift.String
+  public let textForTr: Swift.String
+  public let srcLanguageCode: Swift.String
+  public let dstLanguageCode: Swift.String
+  public var id: Swift.String {
+    get
+  }
+  public var isRealTime: Swift.Bool {
+    get
+  }
+  public static func == (a: LiveTranslationSDK.ChatItemEntity, b: LiveTranslationSDK.ChatItemEntity) -> Swift.Bool
+  public typealias ID = Swift.String
+}
+public struct LanguageItemEntity : Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+  public let langId: Swift.Int
+  public let languageCode: Swift.String
+  public let languageLocal: Swift.String
+  public var id: Swift.Int {
+    get
+  }
+  public static func == (a: LiveTranslationSDK.LanguageItemEntity, b: LiveTranslationSDK.LanguageItemEntity) -> Swift.Bool
+  public typealias ID = Swift.Int
+}
+@_Concurrency.MainActor final public class ChatAudienceStore {
+  @_Concurrency.MainActor final public var isConnected: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var chatList: [LiveTranslationSDK.ChatItemEntity] {
+    get
+  }
+  @_Concurrency.MainActor final public var supportLanguages: [LiveTranslationSDK.LanguageItemEntity] {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor final public var dstLangCode: Swift.String? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor final public var lastErrorMessage: Swift.String? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor final public var roomTitle: Swift.String? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor public init(interactionKey: Swift.String, dstLangCode: Swift.String? = nil)
+  #endif
+  @_Concurrency.MainActor final public func connect()
+  @_Concurrency.MainActor final public func disconnect()
+  @_Concurrency.MainActor final public func requestTranslationLanguage(_ langCode: Swift.String)
+  @objc deinit
+}
+extension LiveTranslationSDK.ChatAudienceStore : nonisolated Observation.Observable {
+}
+public enum LiveTranslationSDKConfiguration {
+  public enum Environment {
+    case development
+    case production
+    public static func == (a: LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment, b: LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func configure(environment: LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment = .production)
+}
+extension LiveTranslationSDK.ChatAudienceStore : Swift.Sendable {}
+extension LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment : Swift.Equatable {}
+extension LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment : Swift.Hashable {}
