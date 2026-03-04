@@ -1,0 +1,15 @@
+# macOS / IDE
+.DS_Store
+.idea/
+*.iml
+
+# Gradle
+.gradle/
+local.properties
+
+# Build outputs
+build/
+**/build/
+
+# Kotlin/Java
+*.class
