@@ -7,7 +7,7 @@ import Observation
 final class ViewModel {
   init() { }
 
-  private let store = ChatAudienceStore(interactionKey: "820230", dstLangCode: "ja")
+  private let store = ChatAudienceStore(interactionKey: "820230")
   var isRefreshing: Bool = false
 
   var chatList: [ChatItemEntity] {

@@ -4,6 +4,7 @@
 // swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
 import Foundation
 @_exported import LiveTranslationSDK
+import Network
 import Observation
 import Swift
 import _Concurrency
@@ -38,7 +39,7 @@ public struct LanguageItemEntity : Swift.Equatable, Swift.Identifiable, Swift.Se
   public static func == (a: LiveTranslationSDK.LanguageItemEntity, b: LiveTranslationSDK.LanguageItemEntity) -> Swift.Bool
   public typealias ID = Swift.Int
 }
-@_Concurrency.MainActor final public class ChatAudienceStore {
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class ChatAudienceStore {
   @_Concurrency.MainActor final public var isConnected: Swift.Bool {
     get
   }
@@ -54,22 +55,24 @@ public struct LanguageItemEntity : Swift.Equatable, Swift.Identifiable, Swift.Se
   }
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor final public var lastErrorMessage: Swift.String? {
+  @_Concurrency.MainActor final public var roomTitle: Swift.String? {
     get
   }
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor final public var roomTitle: Swift.String? {
+  @_Concurrency.MainActor final public var lastErrorMessage: Swift.String? {
     get
   }
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor public init(interactionKey: Swift.String, dstLangCode: Swift.String? = nil)
   #endif
+  @objc deinit
+}
+extension LiveTranslationSDK.ChatAudienceStore {
   @_Concurrency.MainActor final public func connect()
   @_Concurrency.MainActor final public func disconnect()
   @_Concurrency.MainActor final public func requestTranslationLanguage(_ langCode: Swift.String)
-  @objc deinit
 }
 extension LiveTranslationSDK.ChatAudienceStore : nonisolated Observation.Observable {
 }

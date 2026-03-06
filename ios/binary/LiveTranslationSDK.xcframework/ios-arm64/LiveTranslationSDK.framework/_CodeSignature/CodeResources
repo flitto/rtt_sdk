@@ -14,23 +14,23 @@
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		/DjIO+e2DTgpJ8D87RQrWHi9ep0=
+		ADjm8uDxnHgaGqkVWp5NuG5npwI=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		h86n0xiuInu36oJqpnMRGWoAXzU=
+		hbTaxgDGmXpa2A45BWdjOKjGBRI=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		QfeyRPt4Af90xkIJC/XQC++RnQY=
+		uBN/3d5/644mKIFVwcUYe7tiU78=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		h86n0xiuInu36oJqpnMRGWoAXzU=
+		hbTaxgDGmXpa2A45BWdjOKjGBRI=
 		</data>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		pZX8AWCGbPM1z2RzkWevzcOlXFg=
+		kJ7ss8tEVVHF3Acj+BpER6j7i9U=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -50,35 +50,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SWUHR45Xsm/vHnlPBvz0GpHt+7GAnDD2hsDlLeLoKJE=
+			czd9uP2QvI7+yNw9xnM8DTHN1rbmY5nx6tiRU1yjQgo=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yfTw5XGmAz1lv+BETm8sdYAWUnf9Q9+JGvE5wV3SyrI=
+			y+y9Q8sRwm9A64A8a/aVqQhHGN7N3Svmc2lYXMiWrtE=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			r3DTpe4sjFHAjBVLiLaDG1qhLZkFG+o/OJzfDsWubr4=
+			KwByhoikAmsfeR2ZzDF1cd//v8GK5+hikacgfyzGG0M=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yfTw5XGmAz1lv+BETm8sdYAWUnf9Q9+JGvE5wV3SyrI=
+			y+y9Q8sRwm9A64A8a/aVqQhHGN7N3Svmc2lYXMiWrtE=
 			</data>
 		</dict>
 		<key>Modules/LiveTranslationSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			atzWILvfXOov6xxgusJWvf1awbMNQxuPq9rqwSPjuFU=
+			b6CzlXI6DvZSILfaLRRssh2v0m6EbESBypyR6B7ifhI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
