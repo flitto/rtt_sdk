@@ -11,7 +11,7 @@ let package = Package(
   ],
   products: [
     .library(
-      name: "rtt-sdk",
+      name: "LiveTranslationSDK",
       targets: ["LiveTranslationSDK"]),
   ],
   targets: [
