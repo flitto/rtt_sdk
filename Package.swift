@@ -12,15 +12,15 @@ let package = Package(
   products: [
     .library(
       name: "rtt-sdk",
-      targets: ["LiveTranslationSDK_iOS"]),
+      targets: ["LiveTranslationSDK"]),
   ],
   targets: [
     .target(
       name: "rtt-sdk",
-      path: "iOS/Sources"),
+      path: "ios/Sources"),
     .binaryTarget(
-      name: "LiveTranslationSDK_iOS",
-      path: "iOS/binary/LiveTranslationSDK_iOS.xcframework"
+      name: "LiveTranslationSDK",
+      path: "ios/binary/LiveTranslationSDK.xcframework"
     ),
   ]
 )

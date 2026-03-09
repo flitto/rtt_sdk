@@ -44,7 +44,7 @@ if [[ ${#CHANGED_FILES[@]} -eq 0 ]]; then
 fi
 
 ALLOWED_PATTERNS=(
-  '^ios/binary/LiveTranslationSDK_iOS\.xcframework/'
+  '^ios/binary/LiveTranslationSDK\.xcframework/'
   '^ios/LT_Demo/'
   '^Package\.swift$'
   '^README\.md$'
