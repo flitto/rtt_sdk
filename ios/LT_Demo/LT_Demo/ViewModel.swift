@@ -7,7 +7,8 @@ import Observation
 final class ViewModel {
   init() { }
 
-  private let store = ChatAudienceStore(interactionKey: "820230")
+  private let interactionKey = "820230"
+  private let store = ChatAudienceStore()
   var isRefreshing: Bool = false
 
   var chatList: [ChatItemEntity] {
@@ -36,7 +37,7 @@ extension ViewModel {
   public func send(_ inputAction: InputAction) {
     switch inputAction {
     case .onAppearedPage:
-      store.connect()
+      store.connect(interactionKey: interactionKey)
     case .onDisappearedPage:
       store.disconnect()
     case .changeLangCode(let newLang):
@@ -50,7 +51,7 @@ extension ViewModel {
     guard !isRefreshing else { return }
     isRefreshing = true
     store.disconnect()
-    store.connect()
+    store.connect(interactionKey: interactionKey)
     isRefreshing = false
   }
 }
