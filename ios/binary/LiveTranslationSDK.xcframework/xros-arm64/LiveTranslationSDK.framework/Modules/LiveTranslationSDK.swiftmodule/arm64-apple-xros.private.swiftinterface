@@ -39,7 +39,7 @@ public struct LanguageItemEntity : Swift.Equatable, Swift.Identifiable, Swift.Se
   public static func == (a: LiveTranslationSDK.LanguageItemEntity, b: LiveTranslationSDK.LanguageItemEntity) -> Swift.Bool
   public typealias ID = Swift.Int
 }
-@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class ChatAudienceStore {
+@_hasMissingDesignatedInitializers final public class ChatAudienceStore {
   @_Concurrency.MainActor final public var isConnected: Swift.Bool {
     get
   }
@@ -64,15 +64,17 @@ public struct LanguageItemEntity : Swift.Equatable, Swift.Identifiable, Swift.Se
     get
   }
   #endif
-  #if compiler(>=5.3) && $NonescapableTypes
-  @_Concurrency.MainActor public init(interactionKey: Swift.String, dstLangCode: Swift.String? = nil)
-  #endif
+  public init()
   @objc deinit
 }
 extension LiveTranslationSDK.ChatAudienceStore {
-  @_Concurrency.MainActor final public func connect()
-  @_Concurrency.MainActor final public func disconnect()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func connect(interactionKey: Swift.String, dstLangCode: Swift.String? = nil)
+  #endif
+  final public func disconnect()
   @_Concurrency.MainActor final public func requestTranslationLanguage(_ langCode: Swift.String)
+}
+extension LiveTranslationSDK.ChatAudienceStore : @unchecked Swift.Sendable {
 }
 extension LiveTranslationSDK.ChatAudienceStore : nonisolated Observation.Observable {
 }
@@ -88,6 +90,5 @@ public enum LiveTranslationSDKConfiguration {
   }
   public static func configure(environment: LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment = .production)
 }
-extension LiveTranslationSDK.ChatAudienceStore : Swift.Sendable {}
 extension LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment : Swift.Equatable {}
 extension LiveTranslationSDK.LiveTranslationSDKConfiguration.Environment : Swift.Hashable {}

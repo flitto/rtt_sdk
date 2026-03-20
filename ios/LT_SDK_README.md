@@ -21,15 +21,15 @@ Entry point:
 Available initializer:
 
 ```swift
-init(interactionKey: String, dstLangCode: String? = nil)
+init()
 ```
 
 Available functions:
 
 ```swift
-func connect()
+func connect(interactionKey: String, dstLangCode: String? = nil)
 func disconnect()
-func requestTranslationLanguage(_ langCode: String)
+@MainActor func requestTranslationLanguage(_ langCode: String)
 ```
 
 Available properties:
@@ -48,16 +48,12 @@ Recommended call sequence:
 
 1. Create store
 ```swift
-@MainActor
-let store = ChatAudienceStore(
-  interactionKey: "...",
-  dstLangCode: "ja"
-)
+let store = ChatAudienceStore()
 ```
 
 2. Connect when entering the screen
 ```swift
-store.connect()
+store.connect(interactionKey: "...", dstLangCode: "ja")
 ```
 
 3. Reflect message/language/error states
