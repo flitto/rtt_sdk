@@ -35,13 +35,25 @@ func disconnect()
 Available properties:
 
 ```swift
-var isConnected: Bool
-var chatList: [ChatItemEntity]
-var supportLanguages: [LanguageItemEntity]
-var dstLangCode: String?
-var roomTitle: String?
-var lastErrorMessage: String?
+@MainActor var isConnected: Bool
+@MainActor var chatList: [ChatItemEntity]
+@MainActor var supportLanguages: [LanguageItemEntity]
+@MainActor var dstLangCode: String?
+@MainActor var roomTitle: String?
+@MainActor var lastErrorMessage: String?
 ```
+
+### Actor isolation
+
+`connect()` and `disconnect()` are not actor-isolated and can be called from any concurrency context without `await` or `MainActor.run`.
+
+```swift
+// Callable from anywhere — no await needed
+store.connect(interactionKey: "your-key", dstLangCode: "ja")
+store.disconnect()
+```
+
+State properties (`chatList`, `isConnected`, etc.) are `@MainActor`-isolated, so they are safe to read directly from SwiftUI views or any `@MainActor` context.
 
 ## 3. Call order
 Recommended call sequence:
@@ -71,7 +83,58 @@ store.requestTranslationLanguage("en")
 store.disconnect()
 ```
 
-## 4. ListType (`ChatItemEntity.taskType`)
+## 4. Observation
+
+`ChatAudienceStore` conforms to `@Observable`, so no polling or manual callbacks are needed.
+
+### SwiftUI
+
+Properties are tracked automatically. The view re-renders whenever any observed property changes.
+
+```swift
+struct ChatView: View {
+    let store: ChatAudienceStore
+
+    var body: some View {
+        List(store.chatList) { item in
+            Text(item.textForTr)
+        }
+    }
+}
+```
+
+### TCA / AsyncStream
+
+Use `withObservationTracking` to bridge into an `AsyncStream`:
+
+```swift
+let stream = AsyncStream<ChatAudienceStore> { continuation in
+    Task { @MainActor in
+        func observe() {
+            withObservationTracking {
+                MainActor.assumeIsolated {
+                    _ = store.isConnected
+                    _ = store.chatList
+                    _ = store.supportLanguages
+                    _ = store.dstLangCode
+                    _ = store.roomTitle
+                    _ = store.lastErrorMessage
+                }
+            } onChange: {
+                continuation.yield(store)
+                Task { @MainActor in observe() }
+            }
+        }
+        observe()
+    }
+}
+```
+
+This fires only on actual property changes — no polling, no latency.
+
+A complete TCA integration example (`LiveTranslationClient`, `LiveTranslationFeature` reducer, `StoreSnapshot`) is available in the demo app under `ios/LT_Demo/LT_Demo/TCA/`.
+
+## 5. ListType (`ChatItemEntity.taskType`)
 `ChatItemEntity.taskType` can contain:
 
 - `renew` - Initial loaded messages
@@ -82,7 +145,7 @@ store.disconnect()
 
 You can also use `isRealTime == true` to handle real-time UI behavior.
 
-## 5. Model
+## 6. Model
 ```swift
 public struct ChatItemEntity: Equatable, Identifiable, Sendable {
   public let taskType: String
