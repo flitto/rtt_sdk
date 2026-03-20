@@ -50,8 +50,9 @@ extension ViewModel {
   private func refresh() {
     guard !isRefreshing else { return }
     isRefreshing = true
+    let currentLangCode = store.dstLangCode
     store.disconnect()
-    store.connect(interactionKey: interactionKey)
+    store.connect(interactionKey: interactionKey, dstLangCode: currentLangCode)
     isRefreshing = false
   }
 }
