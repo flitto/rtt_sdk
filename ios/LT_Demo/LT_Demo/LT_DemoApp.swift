@@ -19,9 +19,6 @@ struct LT_DemoApp: App {
           )
         }
       }
-      .onAppear {
-        LiveTranslationSDKConfiguration.configure(environment: .development)
-      }
     }
   }
 }
