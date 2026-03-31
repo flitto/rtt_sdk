@@ -109,8 +109,12 @@ Use `withObservationTracking` to bridge into an `AsyncStream`:
 
 ```swift
 let stream = AsyncStream<ChatAudienceStore> { continuation in
-    Task { @MainActor in
-        func observe() {
+    var observationTask: Task<Void, Never>?
+
+    func observe() {
+        observationTask = Task { @MainActor in
+            guard !Task.isCancelled else { return }
+
             withObservationTracking {
                 MainActor.assumeIsolated {
                     _ = store.isConnected
@@ -121,11 +125,21 @@ let stream = AsyncStream<ChatAudienceStore> { continuation in
                     _ = store.lastErrorMessage
                 }
             } onChange: {
+                guard !Task.isCancelled else { return }
                 continuation.yield(store)
-                Task { @MainActor in observe() }
+                observe()
             }
         }
-        observe()
+    }
+
+    // Yield the current snapshot immediately so consumers receive initial state.
+    continuation.yield(store)
+
+    // Then observe future changes.
+    observe()
+
+    continuation.onTermination = { _ in
+        observationTask?.cancel()
     }
 }
 ```
